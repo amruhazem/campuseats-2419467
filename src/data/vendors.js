@@ -2,7 +2,7 @@ const vendors = [
  {
  id: 'nasi-kukus',
  name: 'nasi kukus',
- location: 'Jalan Rabung, Bukit Jelutong, Shaah Alam, Selangor',
+ location: 'Jalan Rabung, Bukit Jelutong, Shah Alam, Selangor',
  openHours: '10:00 am - 10:00 pm',
  isOpen: true,
  menu: [
