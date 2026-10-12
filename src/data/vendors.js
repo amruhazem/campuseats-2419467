@@ -8,7 +8,7 @@ const vendors = [
  menu: [
  { id: 'nk-1', name: 'Nasi Kukus Ayam', description: 'steamed rice, spiced fried chicken, curry gravy, and sambal belacan', price: 6.5, category: 'Rice',
 available: true },
- { id: 'nk-2', name: 'Nasi Kukus Daging Kerutuk', description: 'steamed rice served with rich beef kerutuk gravy and sambal ', price: 7.5, category:
+ { id: 'nk-2', name: 'Nasi Kukus Daging Kerutuk', description: 'steamed rice served with rich beef kerutuk gravy and sambal belacan ', price: 7.5, category:
 'Rice', available: false },
  { id: 'nk-3', name: 'Teh o Ais', description: 'ice tea', price: 1.5, category:
 'Drinks', available: true },

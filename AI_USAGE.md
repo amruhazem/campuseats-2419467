@@ -13,7 +13,7 @@ Add a new section every week, before you tag. Did not use AI? Write "None" under
     it gave me a line of coding rather than a direct answer on what the question ask as it is not considered wrong, it just that it did not give me direct explanation but it explain the question to me in the form of code. I dont consider this as fix but i just open informative website like https://react.dev/reference/react/Fragment to get a more clearer answer.
 
 ## Week 2
-- Tool(s):
-- What I asked for:
-- What I kept, changed or rejected, and why:
-- One thing the AI got wrong and how I fixed it:
+- Tool(s): gemini
+- What I asked for: None
+- What I kept, changed or rejected, and why: None
+- One thing the AI got wrong and how I fixed it: None
