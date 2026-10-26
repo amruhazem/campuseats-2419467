@@ -17,7 +17,7 @@ function CartPage({ cart, onChangeQty, onRemove, onPlaceOrder, onUpdateNote }) {
                     line={line}
                     onChangeQty={onChangeQty}
                     onRemove={onRemove}
-                    OnUpdateNote={onUpdateNote}
+                    onUpdateNote={onUpdateNote}
                 />
             ))}
         </ul>

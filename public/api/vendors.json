@@ -8,7 +8,7 @@
     "menu": [
         { 
             "id": "2419467-nk-1", 
-            "name": "Nasi Kukus Ayam", 
+            "name": "Nasi Kukus Ayam Berempah", 
             "description": "steamed rice, spiced fried chicken, curry gravy, and sambal belacan", 
             "price": 6.5, 
             "category": "Rice", 
@@ -23,13 +23,53 @@
             "available": false 
         },
         { 
-            "id": "2419467-nk-3", 
-            "name": "Teh o Ais", 
-            "description": "ice tea", 
-            "price": 1.5, 
-            "category": "Drinks", 
-            "available": true 
-        }
+        "id": "2419467-nk-3", 
+        "name": "Nasi Kukus Campur", 
+        "description": "steamed rice with a combination of fried chicken, beef, and rich gravy",
+        "price": 10.0, 
+        "category": "Rice", 
+        "available": true 
+      },
+      { 
+        "id": "2419467-nk-4", 
+        "name": "Teh O Ais", 
+        "description": "iced black tea", 
+        "price": 1.5, 
+        "category": "Drinks", 
+        "available": true 
+      },
+      { 
+        "id": "2419467-nk-5", 
+        "name": "Sirap Bandung", 
+        "description": "rose syrup drink with condensed milk", 
+        "price": 2.0, 
+        "category": "Drinks", 
+        "available": true 
+      },
+      { 
+        "id": "2419467-nk-6", 
+        "name": "Extra Sambal Belacan", 
+        "description": "extra side of spicy sambal belacan", 
+        "price": 0.5, 
+        "category": "Sides", 
+        "available": true 
+      },
+      { 
+        "id": "2419467-nk-7", 
+        "name": "Lemak Bakar", 
+        "description": "grilled beef fat served as a rich side dish", 
+        "price": 3.0, 
+        "category": "Sides", 
+        "available": true 
+      },
+      { 
+        "id": "2419467-nk-8", 
+        "name": "Keropok Keping", 
+        "description": "crispy fish crackers", 
+        "price": 1.5, 
+        "category": "Sides", 
+        "available": true 
+      }
     ]
  },
  {
