@@ -25,3 +25,15 @@ Add a new section every week, before you tag. Did not use AI? Write "None" under
     -help me with todo task not all task
 - What I kept, changed or rejected, and why: Kept all state, fetch, and validation code because it followed the lab instructions.
 - One thing the AI got wrong and how I fixed it: The AI generated code with a missing closing brace } in App.jsx, which I fixed by adding the brace before export default App.
+
+## Week 4
+
+- AI Tools Used: Gemini
+- What I asked: 
+  - Guidance on refactoring state management to `CartProvider` and extracting custom hooks (`useLocalStorage`, `useVendors`, `useCart`).
+  - Assistance setting up React Router v8 route configuration (`Layout`, dynamic `vendor/:id` routing, `useNavigate`).
+- What I kept or changed: 
+  - Kept the centralized `CartProvider` and `useCart` hook structure.
+  - Adjusted `OrdersPage.jsx` rendering to support Feature 7 item notes.
+- One thing the AI got wrong: 
+  - The AI initially suggested `react_router` with an underscore in an import statement, which caused a Vite module resolution error until fixed to `react-router`.
