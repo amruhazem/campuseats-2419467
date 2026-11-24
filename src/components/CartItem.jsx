@@ -1,6 +1,10 @@
+import { Link } from 'react-router'
+import { useAuth } from '../hooks/useAuth.js'
+
 // One row in the cart. It shows data and reports clicks upward; it owns no state.
 function CartItem({ line, onChangeQty, onRemove, onUpdateNote }) {
   const { item, qty, note } = line
+  const { user } = useAuth()
 
   return (
     <li className="cart-line">
@@ -21,13 +25,19 @@ function CartItem({ line, onChangeQty, onRemove, onUpdateNote }) {
 
       {/* Feature 7: Order notes per item */}
       <div style={{ width: '100%', marginTop: '0.5rem' }}>
-        <textarea
-          placeholder="Add order note (e.g. less spicy, no onions)..."
-          value={note || ''}
-          onChange={(e) => onUpdateNote(item.id, e.target.value)}
-          rows="2"
-          style={{ width: '100%', resize: 'vertical' }}
-        />
+        {user ? (
+          <textarea
+            placeholder="Add order note (e.g. less spicy, no onions)..."
+            value={note || ''}
+            onChange={(e) => onUpdateNote(item.id, e.target.value)}
+            rows="2"
+            style={{ width: '100%', resize: 'vertical' }}
+          />
+        ) : (
+          <p className="muted">
+            <Link to="/login">Log in</Link> to add notes
+          </p>
+        )}
       </div>
 
       {/* TODO 3: Remove button */}
