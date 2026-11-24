@@ -37,3 +37,16 @@ Add a new section every week, before you tag. Did not use AI? Write "None" under
   - Adjusted `OrdersPage.jsx` rendering to support Feature 7 item notes.
 - One thing the AI got wrong: 
   - The AI initially suggested `react_router` with an underscore in an import statement, which caused a Vite module resolution error until fixed to `react-router`.
+
+## Week 5
+
+- AI Tools Used: Gemini
+- What I asked: 
+  - Help completing the TODOs in `AuthProvider.jsx` and verifying my Lab 5 Firebase Authentication and `ProtectedRoute` checklist.
+  - Guidance on updating `CartProvider.jsx` and `CartItem.jsx` to store cart items and per-item order notes per `user.uid` for Feature 7.
+- What I kept or changed: 
+  - Kept the `AuthProvider`, `useAuth`, and `ProtectedRoute` pattern from the lab sheet.
+  - Adapted `CartProvider.jsx` to use `ce-cart-<uid>` and `ce-orders-<uid>` keys when signed in while keeping my existing Week 4 state handlers (`addToCart`, `changeQty`, `removeFromCart`, `updateNote`, `placeOrder`).
+  - Updated `CartItem.jsx` to show `"Log in to add notes"` for guests and the editable `<textarea>` for signed-in users.
+- One thing the AI got wrong: 
+  - Initially provided a `CartProvider` example using generic property names (`items`, `updateQty`) instead of my existing Week 4 names (`cart`, `changeQty`), which I adjusted to match my codebase.
