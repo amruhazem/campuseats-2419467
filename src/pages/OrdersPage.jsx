@@ -1,8 +1,14 @@
 import { Link } from 'react-router'
-import { useCart } from '../hooks/useCart.js'
+import { useMyOrders } from '../hooks/useMyOrders.js'
+import OrderStatus from '../components/OrderStatus.jsx'
+import OrderActions from '../components/OrderActions.jsx'
+import { Loading, ErrorMessage } from '../components/Status.jsx'
 
 function OrdersPage() {
-  const { orders } = useCart()
+  const { orders, loading, error } = useMyOrders()
+
+  if (loading) return <Loading />
+  if (error) return <ErrorMessage message={error} onRetry={() => window.location.reload()} />
 
   if (orders.length === 0) {
     return (
@@ -15,24 +21,33 @@ function OrdersPage() {
     )
   }
 
-return (
+  return (
     <section>
       <h2 className="section-title">My orders</h2>
+      <p className="muted">Status updates appear here live.</p>
       <ul className="order-list">
         {orders.map((order) => (
           <li key={order.id} className="card">
             <p className="cart-name">
-              Pickup {order.pickupTime} Mahallah {order.mahallah}
+              {order.vendorName} &middot; pickup {order.pickupTime} (Mahallah {order.mahallah})
             </p>
             <ul className="muted">
-              {(order.lines || order.items)?.map((line) => (
-                <li key={line.item.id}>
-                  {line.qty}x {line.item.name} - RM {(line.item.price * line.qty).toFixed(2)}
-                  {line.note && <p className="muted">Note: "{line.note}"</p>}
+              {order.items?.map((i) => (
+                <li key={i.itemId}>
+                  {i.qty}&times; {i.name} - RM {(i.price * i.qty).toFixed(2)}
+                  {i.note && <p className="muted">Note: &ldquo;{i.note}&rdquo;</p>}
                 </li>
               ))}
             </ul>
+            <p className="muted">
+              Placed{' '}
+              {order.createdAt
+                ? order.createdAt.toDate().toLocaleString('en-MY')
+                : 'just now'}
+            </p>
             <p className="price">RM {order.total.toFixed(2)}</p>
+            <OrderStatus status={order.status} />
+            {order.status === 'Received' && <OrderActions order={order} />}
           </li>
         ))}
       </ul>
