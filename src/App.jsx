@@ -10,6 +10,7 @@ import { AuthProvider } from './context/AuthProvider.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
+import SeedPage from './pages/SeedPage.jsx'
 
 // App only wires things together: the router, the provider and the route table.
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="vendor/:id" element={<VendorPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
+            {import.meta.env.DEV && <Route path="seed" element={<SeedPage />} />}
             {/* Everything inside ProtectedRoute needs a signed-in user */}
             <Route element={<ProtectedRoute />}>
               <Route path="cart" element={<CartPage />} />

@@ -3,23 +3,15 @@ import { useLocalStorage } from '../hooks/useLocalStorage.js'
 import { CartContext } from './cart-context.js'
 import { useAuth } from '../hooks/useAuth.js'
 
-// Owns the cart and the orders, and shares them with every component inside it.
 export function CartProvider({ children }) {
   const { user } = useAuth()
 
-  // Save per user when signed in, guests get an empty default that is not persisted
   const cartKey = user ? `ce-cart-${user.uid}` : 'ce-cart-guest'
-  const ordersKey = user ? `ce-orders-${user.uid}` : 'ce-orders-guest'
-
   const [savedCart, setSavedCart] = useLocalStorage(cartKey, [])
-  const [savedOrders, setSavedOrders] = useLocalStorage(ordersKey, [])
   const [guestCart, setGuestCart] = useState([])
-  const [guestOrders, setGuestOrders] = useState([])
 
   const cart = user ? savedCart : guestCart
   const setCart = user ? setSavedCart : setGuestCart
-  const orders = user ? savedOrders : guestOrders
-  const setOrders = user ? setSavedOrders : setGuestOrders
 
   const count = cart.reduce((sum, line) => sum + line.qty, 0)
   const total = cart.reduce((sum, line) => sum + line.item.price * line.qty, 0)
@@ -59,29 +51,19 @@ export function CartProvider({ children }) {
     )
   }
 
-  function placeOrder(details) {
-    const newOrder = {
-      id: `ord-${Date.now()}`,
-      createdAt: new Date().toISOString(),
-      ...details,
-      lines: cart, //holds cart items + notes
-      total: cart.reduce((sum, line) => sum + line.item.price * line.qty, 0),
-    }
-    setOrders((prev) => [newOrder, ...prev])
+  function clearCart() {
     setCart([])
-    return newOrder
   }
 
   const value = {
     cart,
-    orders,
     count,
     total,
     addToCart,
     changeQty,
     removeFromCart,
     updateNote,
-    placeOrder,
+    clearCart,
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

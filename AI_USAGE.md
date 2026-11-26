@@ -50,3 +50,17 @@ Add a new section every week, before you tag. Did not use AI? Write "None" under
   - Updated `CartItem.jsx` to show `"Log in to add notes"` for guests and the editable `<textarea>` for signed-in users.
 - One thing the AI got wrong: 
   - Initially provided a `CartProvider` example using generic property names (`items`, `updateQty`) instead of my existing Week 4 names (`cart`, `changeQty`), which I adjusted to match my codebase.
+
+## Week 6
+
+- AI Tool used: Gemini
+- What I asked:
+  - Help structuring the Firestore service functions (`vendors.js` and `orders.js`) and connecting per-item order notes (Digit 7) into `placeOrders` and `OrdersPage.jsx`.
+  - Troubleshooting ESLint warnings in `useVendors.js`, a CSS-in-JSX syntax error in `OrderStatus.jsx`, and a missing module import error for `OrderActions.jsx`.
+  - Understanding why `OrderActions` disappears once an order's `status` changes from `'Received'` to `'Preparing'`.
+- What I kept or changed:
+  - Kept the `writeBatch` order-splitting logic per vendor and updated `placeOrders` to store each cart line's `note` field inside the `items` array in Firestore.
+  - Updated `OrdersPage.jsx` to read flat item properties (`i.itemId`, `i.name`, `i.price`, `i.note`) from Firestore instead of the nested `line.item` shape used in Week 4 `localStorage`.
+  - Kept the standard `useVendors.js` hook structure from the lab sheet after confirming the ESLint `set-state-in-effect` squiggle was only a linter style warning and not a runtime error.
+- One thing the AI got wrong:
+  - During the B5 walkthrough, the AI jumped straight to building `OrderActions.jsx` and `OrdersPage.jsx` before explicitly confirming that `changePickupTime` (`updateDoc`) and `cancelOrder` (`deleteDoc`) were saved at the bottom of `src/services/orders.js`, so I verified and added both exports to `orders.js` before testing.

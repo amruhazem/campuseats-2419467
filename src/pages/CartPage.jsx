@@ -1,31 +1,41 @@
-import { useNavigate } from 'react-router'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router'
+import { useCart } from '../hooks/useCart.js'
+import { useAuth } from '../hooks/useAuth.js'
+import { placeOrders } from '../services/orders.js'
 import CartItem from '../components/CartItem.jsx'
 import CheckoutForm from '../components/CheckoutForm.jsx'
-import { useCart } from '../hooks/useCart.js'
 
-function CartPage() {             // no props any more
-  const { cart, total, changeQty, removeFromCart, updateNote, placeOrder } = useCart()
+function CartPage() {
+  const { cart, total, changeQty, removeFromCart, updateNote, clearCart } = useCart()
+  const { user } = useAuth()
   const navigate = useNavigate()
+  const [error, setError] = useState('')
 
-  function handleOrder(details) {
-    placeOrder(details)
-    navigate('/orders') // TODO: go to the orders page.
+  async function handlePlaceOrder(details) {
+    setError('')
+    try {
+      await placeOrders(user, cart, details)
+      clearCart()
+      navigate('/orders')
+    } catch (err) {
+      setError(`Could not place the order: ${err.message}`)
+    }
   }
 
-// 1. Empty Cart State
   if (cart.length === 0) {
     return (
       <section>
         <h2 className="section-title">Your cart</h2>
-        <p className="muted">Your cart is empty. Pick something from a menu.</p>
+        <p className="muted">Your cart is empty. <Link to="/">Browse vendors</Link></p>
       </section>
     )
   }
 
-  // 2. Full Cart State
   return (
     <section>
       <h2 className="section-title">Your cart</h2>
+      {error && <p className="field-error" role="alert">{error}</p>}
       <div className="cart-layout">
         <div className="card">
           <ul className="cart-list">
@@ -35,13 +45,16 @@ function CartPage() {             // no props any more
                 line={line}
                 onChangeQty={changeQty}
                 onRemove={removeFromCart}
-                onUpdateNote={updateNote} // Feature 7 order note handler
+                onUpdateNote={updateNote}
               />
             ))}
           </ul>
           <p className="cart-total">Total: RM {total.toFixed(2)}</p>
         </div>
-        <CheckoutForm onPlaceOrder={handleOrder} />
+        <CheckoutForm
+          defaultName={user?.displayName ?? ''}
+          onPlaceOrder={handlePlaceOrder}
+        />
       </div>
     </section>
   )

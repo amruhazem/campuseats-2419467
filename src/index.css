@@ -154,3 +154,13 @@ a.card:hover { border-color: var(--green-light); }
   .nav { flex-wrap: wrap; gap: 0.4rem 1rem; font-size: 0.95rem; }
   .container { padding: 1rem; }
 }
+
+/* lab 6 order status */
+.status-steps { display: flex; gap: 0.4rem; list-style: none; padding: 0; flex-wrap: wrap; }
+.status-steps li { padding: 0.15rem 0.6rem; border-radius: 999px; background: #eef0f3; font-size: 0.8rem; }
+.status-steps li.done { background: var(--green); color: #fff; }
+
+/* lab 6 order actions */
+.order-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.6em; }
+.order-actions input { width: auto; }
+.btn-small { padding: 0.3rem 0.8rem; font-size: 0.85rem; }
